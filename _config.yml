@@ -1,0 +1,144 @@
+# Set theme
+theme: alembic-jekyll-theme
+
+# File excludes
+exclude:
+- README.md
+- Gemfile
+- Gemfile.lock
+- netlify.toml
+
+# Set plugins
+plugins:
+- jekyll-sitemap
+- jekyll-mentions
+- jekyll-paginate
+- jekyll-seo-tag
+- jekyll-redirect-from
+- jekyll-feed
+- jekyll-commonmark
+- jekyll-include-cache
+- jemoji
+- fastimage
+
+# Site settings
+url: 'https://www.archieandanna.com'
+baseurl: ''
+title: "Archie & Anna’s Wedding"
+image: "../assets/images/sweden-aperol.jpg"
+description: "All the info you need about our wedding location and venue, as well as travel & accommodation options. We'll post photos up here after too!"
+permalink: pretty
+#logo: "/assets/logos/white_icon.svg" # Site logo, also used in jekyll-seo-tag
+google_analytics: G-6YJJLX2TB8
+google_analytics_anonymize_ip: false
+
+# Header nav
+navigation_header:
+- title: Home
+  url: /
+- title: Venue Info
+  url: /venue/
+- title: Travel
+  url: /travel/
+- title: Agenda
+  url: /agenda/
+- title: Photos
+  url: /photos/
+
+
+# Footer nav
+navigation_footer:
+- title: Back to top
+  url: "#top"
+
+# Collections
+collections:
+  posts:
+    title: Posts
+    output: true
+    description: "My thoughts and ideas"
+    feature_text: |
+      Welcome to my blog
+    feature_image: "https://picsum.photos/2560/600?image=866"
+
+# Collection settings
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post # Set the default layout for posts
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: page # Set the default layout for pages
+  - scope:
+      path: "assets/images/pro-photos/ceremony"
+    values:
+      ceremony: true
+      pro-photos: true
+  - scope:
+      path: "assets/images/pro-photos/cocktail"
+    values:
+      cocktail: true
+      pro-photos: true
+  - scope:
+      path: "assets/images/pro-photos/dancing"
+    values:
+      dancing: true
+      pro-photos: true
+  - scope:
+      path: "assets/images/pro-photos/getting-ready"
+    values:
+      getting-ready: true
+      pro-photos: true
+  - scope:
+      path: "assets/images/pro-photos/dinner"
+    values:
+      dinner: true
+      pro-photos: true
+  - scope:
+      path: "assets/images/pro-photos/together"
+    values:
+      together: true
+      pro-photos: true
+
+  - scope:
+      path: "assets/images/high-res/ceremony"
+    values:
+      ceremony: true
+      high-res: true
+  - scope:
+      path: "assets/images/high-res/cocktail"
+    values:
+      cocktail: true
+      high-res: true
+  - scope:
+      path: "assets/images/high-res/dancing"
+    values:
+      dancing: true
+      high-res: true
+  - scope:
+      path: "assets/images/high-res/getting-ready"
+    values:
+      getting-ready: true
+      high-res: true
+  - scope:
+      path: "assets/images/high-res/dinner"
+    values:
+      dinner: true
+      high-res: true
+  - scope:
+      path: "assets/images/high-res/together"
+    values:
+      together: true
+      high-res: true
+
+fonts:
+  preconnect_urls:
+    - https://fonts.gstatic.com
+  font_urls:
+    - https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;1,300;1,400
