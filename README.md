@@ -28,3 +28,4 @@ https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pag
 https://news.ycombinator.com/item?id=16969468
 https://docs.github.com/de/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
 https://github.com/chrissy-dev/protected-github-pages
+https://www.qrcodechimp.com/
