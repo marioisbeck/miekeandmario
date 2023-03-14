@@ -23,3 +23,8 @@ Alternatively, here's our top most trending and selling items:
 * [**Mega Discount**](https://themewagon.com/themes/mega-discount-bundle/) - A bundle of 26 HTML5 templates; best value for your money. 
 
 
+https://dnschecker.org/
+https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
+https://news.ycombinator.com/item?id=16969468
+https://docs.github.com/de/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
+https://github.com/chrissy-dev/protected-github-pages
