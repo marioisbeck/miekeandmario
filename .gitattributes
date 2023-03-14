@@ -1,4 +1,2 @@
-# Auto detect text files and perform LF normalization
-* text=auto
 *.mov !text !filter !merge !diff
 *.jpg !text !filter !merge !diff
