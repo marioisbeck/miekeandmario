@@ -24,6 +24,7 @@ Alternatively, here's our top most trending and selling items:
 
 
 https://dnschecker.org/
+point to cloudflare and configure dns on cloudflare: https://chenhuijing.com/blog/setting-up-custom-domain-github-pages/#%F0%9F%96%8A
 https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
 https://news.ycombinator.com/item?id=16969468
 https://docs.github.com/de/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
