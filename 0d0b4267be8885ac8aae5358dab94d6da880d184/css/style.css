@@ -1843,4 +1843,18 @@ form label {
   opacity: 0;
 }
 
+/* Container holding the image and the text */
+.location-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* Bottom left text */
+.entranceA {
+  position: absolute;
+  bottom: 270px;
+  left: 570px;
+}
+
 /*# sourceMappingURL=style.css.map */
