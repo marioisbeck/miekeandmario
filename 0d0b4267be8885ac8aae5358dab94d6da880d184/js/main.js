@@ -432,6 +432,6 @@ $(function(){
 }());
 
 function gotoSection(cururl) { 
-    window.location.assign( 'https://www.miekeandmario.com/0d0b4267be8885ac8aae5358dab94d6da880d184/' + cururl ); 
-	// window.location.assign( 'file:///Users/mario/programming/wedding/miekemario/0d0b4267be8885ac8aae5358dab94d6da880d184/' + cururl ); 
+    // window.location.assign( 'https://www.miekeandmario.com/0d0b4267be8885ac8aae5358dab94d6da880d184/' + cururl ); 
+	window.location.assign( 'file:///Users/mario/programming/wedding/miekemario/0d0b4267be8885ac8aae5358dab94d6da880d184/' + cururl ); 
 }

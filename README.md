@@ -3,6 +3,13 @@
 The description is lagging a bit behind, but I will provide a useful description to built your own wedding website based of this, or use the concepts explained to add your own DNS forwarding for your custom github pages webste.
 
 
+## ToDo
+
+1. Add section to contact Jiske, Julian, and Nina for speeches, performances, and co.
+2. translate into german and dutch
+3. ...
+
+
 ## HTML Template
 
 generated from:
