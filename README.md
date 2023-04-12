@@ -1,22 +1,9 @@
-# Wedding Page Documentation
+# Build Your Own Github Pages Website
 
-The description is lagging a bit behind, but I will provide a useful description to built your own wedding website based of this, or use the concepts explained to add your own DNS forwarding for your custom github pages webste.
-
-
-## ToDo
-
-1. Add section to contact Jiske, Julian, and Nina for speeches, performances, and co.
-2. translate into german and dutch
-3. ...
-
+Welcome to the my GitHub pages website setup documentation. This documentation is mostly based on two resources: [nicolas-van](https://github.com/nicolas-van/bootstrap-4-github-pages) and the underlying html template from [themewagon](https://themewagon.com/themes/free-bootstrap-wedding-website-template/). I encourage you to look at this 
 
 ## HTML Template
 
-generated from:
-https://github.com/nicolas-van/bootstrap-4-github-pages
-
-uderlying html template from:
-https://themewagon.com/themes/free-bootstrap-wedding-website-template/
 
 
 ## Github Pages
@@ -26,6 +13,8 @@ https://themewagon.com/themes/free-bootstrap-wedding-website-template/
 
 
 ## Useful Links
+https://unicode.org/emoji/charts/full-emoji-list.html#1f37b
+
 https://dnschecker.org/
 point to cloudflare and configure dns on cloudflare: https://chenhuijing.com/blog/setting-up-custom-domain-github-pages/#%F0%9F%96%8A
 https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site
