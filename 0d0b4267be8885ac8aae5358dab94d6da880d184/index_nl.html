@@ -84,6 +84,207 @@
                 headerElement.style.backgroundImage = `url(images/wedding_pics/${currentImageIndex}.jpg)`;
             }, intervalTime);
         });
+		document.addEventListener("DOMContentLoaded", function() {
+			const mediaFiles = [
+				{ type: 'image', src: 'images/wedding_pics/1.jpg' },
+				{ type: 'video', src: 'images/videos/1.2.MP4' },
+				{ type: 'image', src: 'images/wedding_pics/2.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/3.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/4.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/5.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/6.jpg' },
+				{ type: 'video', src: 'images/videos/6.5.MP4' },
+				{ type: 'image', src: 'images/wedding_pics/7.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/8.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/9.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/10.jpg' },
+				{ type: 'video', src: 'images/videos/10.3.MP4' },
+				{ type: 'image', src: 'images/wedding_pics/11.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/12.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/13.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/14.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/15.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/16.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/17.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/18.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/19.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/20.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/21.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/22.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/23.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/24.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/25.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/26.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/27.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/28.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/29.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/30.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/31.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/32.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/33.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/34.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/35.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/36.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/37.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/38.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/39.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/40.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/41.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/42.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/43.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/44.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/45.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/46.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/47.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/48.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/49.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/50.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/51.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/52.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/53.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/54.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/55.jpg' },
+				{ type: 'video', src: 'images/videos/55.5.MP4' },
+				{ type: 'image', src: 'images/wedding_pics/56.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/57.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/58.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/59.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/60.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/61.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/62.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/63.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/64.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/65.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/66.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/67.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/68.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/69.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/70.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/71.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/72.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/73.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/74.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/75.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/76.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/77.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/78.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/79.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/80.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/81.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/82.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/83.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/84.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/85.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/86.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/87.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/88.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/89.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/90.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/91.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/92.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/93.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/94.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/95.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/96.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/97.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/98.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/99.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/100.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/101.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/102.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/103.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/104.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/105.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/106.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/107.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/108.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/109.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/110.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/111.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/112.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/113.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/114.jpg' },
+				{ type: 'image', src: 'images/wedding_pics/115.jpg' },
+			];	
+	
+			const galleryDiv = document.querySelector('.gallery');
+			mediaFiles.forEach(file => {
+				if (file.type === 'image') {
+					const img = document.createElement('img');
+					img.src = file.src;
+					img.alt = `Photo`;
+					img.onclick = function() {
+						openModal(file.type, img.src);
+					};
+					galleryDiv.appendChild(img);
+				} else if (file.type === 'video') {
+					const video = document.createElement('video');
+					video.src = file.src;
+					video.controls = false;
+					video.muted = true; // Mute the video to allow autoplay in Chrome
+					video.alt = `Video`;
+					video.onclick = function() {
+						openModal(file.type, video.src);
+					};
+					video.onmouseover = function() {
+						video.controls = true;
+						video.muted = false; // Unmute the video when interacted with
+					};
+					video.onmouseout = function() {
+						video.controls = false;
+					};
+					video.onended = function() {
+						video.play(); // Restart the video when it ends
+					};
+					galleryDiv.appendChild(video);
+				}
+			});
+	
+			function openModal(type, src) {
+				const modal = document.getElementById('myModal');
+				const modalContent = document.querySelector('.modal-content');
+				modal.style.display = "block";
+				modalContent.innerHTML = type === 'image' ? `<img src="${src}" alt="Enlarged Photo">` : `<video src="${src}" controls autoplay></video>`;
+			}
+	
+			function closeModal() {
+				const modal = document.getElementById('myModal');
+				modal.style.display = "none";
+			}
+	
+			// Close the modal when clicking outside the image
+			document.addEventListener('click', function(event) {
+				const modal = document.getElementById('myModal');
+				if (event.target === modal || event.target.classList.contains('close')) {
+					closeModal();
+				}
+			});
+	
+			// Close the modal when pressing the Esc key
+			document.addEventListener('keydown', function(event) {
+				if (event.key === 'Escape') {
+					closeModal();
+				}
+			});
+	
+			// IntersectionObserver to play videos when they come into view
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.play();
+					} else {
+						entry.target.pause();
+					}
+				});
+			}, { threshold: 0.5 });
+	
+			document.querySelectorAll('.gallery video').forEach(video => {
+				observer.observe(video);
+				video.addEventListener('canplay', () => {
+					video.play(); // Start playing the video as soon as it can play
+				});
+			});
+		});
     </script>
 
     <style>
@@ -100,7 +301,7 @@
             gap: 10px;
             padding: 20px;
         }
-        .gallery img {
+        .gallery img, .gallery video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -108,23 +309,18 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
-        .gallery img:hover {
+        .gallery img:hover, .gallery video:hover {
             transform: scale(1.05);
         }
-        .download-link {
-            text-align: center;
-            margin: 20px 0;
+        .gallery video {
+            display: block;
+            position: relative;
         }
-        .download-link a {
-            text-decoration: none;
-            color: #fff;
-            background-color: #007bff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+        .gallery video::-webkit-media-controls {
+            display: none !important;
         }
-        .download-link a:hover {
-            background-color: #0056b3;
+        .gallery video:hover::-webkit-media-controls {
+            display: block !important;
         }
         .modal {
             display: none;
@@ -144,7 +340,7 @@
             height: 85%;
             max-width: 1200px;
         }
-        .modal-content img {
+        .modal-content img, .modal-content video {
             width: 100%;
             height: auto;
         }
@@ -249,62 +445,17 @@
 		</div>
 	</div>
 
-    <!-- <h2>Photo Gallery</h2> -->
+    <!-- Add this section where you want the gallery to appear -->
+    <!-- <h1 style="text-align: center;">Photo and Video Gallery</h1> -->
     <div class="gallery">
-        <!-- Loop through images -->
-        <script>
-            const imageCount = 60;
-            const galleryDiv = document.querySelector('.gallery');
-            for (let i = 1; i <= imageCount; i++) {
-                const img = document.createElement('img');
-                img.src = `images/wedding_pics/${i}.jpg`; // Adjust the naming convention as needed
-                img.alt = `Photo ${i}`;
-                img.onclick = function() {
-                    openModal(img.src);
-                };
-                galleryDiv.appendChild(img);
-            }
-
-            function openModal(src) {
-                const modal = document.getElementById('myModal');
-                const modalImg = document.getElementById('img01');
-                modal.style.display = "block";
-                modalImg.src = src;
-            }
-
-            function closeModal() {
-                const modal = document.getElementById('myModal');
-                modal.style.display = "none";
-            }
-
-            // Close the modal when clicking outside the image
-            document.addEventListener('click', function(event) {
-                const modal = document.getElementById('myModal');
-                if (event.target === modal || event.target.classList.contains('close')) {
-                    closeModal();
-                }
-            });
-
-            // Close the modal when pressing the Esc key
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape') {
-                    closeModal();
-                }
-            });
-        </script>
+        <!-- Gallery items will be injected here by JavaScript -->
     </div>
-    <!-- <p>
-        <a href="https://wetransfer.com/downloads/YOUR_WETRANSFER_LINK" target="_blank">
-            Download all pictures on WeTransfer
-        </a>
-    </p> -->
-
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="modal-content">
-            <img id="img01" alt="Enlarged Photo">
+            <!-- Content will be injected here -->
         </div>
     </div>
 
