@@ -1,0 +1,6 @@
+_site
+.sass-cache
+.jekyll-metadata
+node_modules
+Gemfile.lock
+0d0b4267be8885ac8aae5358dab94d6da880d184/images/videos
