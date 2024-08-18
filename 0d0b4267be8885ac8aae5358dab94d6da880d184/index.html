@@ -63,7 +63,120 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	<!-- Masonry grid layout -->
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let currentImageIndex = 1;
+            const totalImages = 115;
+            const headerElement = document.getElementById("fh5co-header");
+            const intervalTime = 3000; // in milliseconds
+
+            setInterval(() => {
+                currentImageIndex = (currentImageIndex % totalImages) + 1;
+                headerElement.style.backgroundImage = `url(images/wedding_pics/${currentImageIndex}.jpg)`;
+            }, intervalTime);
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 10px;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .download-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .download-link a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .download-link a:hover {
+            background-color: #0056b3;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            margin: 2% auto;
+            display: block;
+            width: auto;
+            height: 85%;
+            max-width: 1200px;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+		.video-gallery {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-auto-rows: 1fr;
+			gap: 10px;
+			padding: 20px;
+		}
+		.video-gallery video {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			transition: transform 0.3s ease;
+		}
+		.video-gallery video:hover {
+			transform: scale(1.05);
+		}
+    </style>
+	
 	</head>
 	<body>
 		
@@ -94,7 +207,7 @@
 		</div>
 	</nav>
 
-	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/img_bg_2.jpg);" data-stellar-background-ratio="0.5">
+	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/wedding_pics/101.jpg);" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
@@ -103,21 +216,9 @@
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
 							<h1>Mieke &amp; Mario's<br>Wedding</h1>
 							<h2>19<sup>th</sup> August 2023</h2>
-							<div class="simply-countdown simply-countdown-one"></div>
-							<p><a href="LoveDay Mieke & Mario.ics" class="btn btn-default btn-sm">Save the date</a></p>
-							<p><a href="#attending" class="btn btn-default btn-sm">Let us know if you come</a></p>
-							<!-- <div class="language-picker language-picker--flags js-language-picker" data-trigger-class="btn btn--subtle ">
-								<form class="btn btn-default btn-sm">
-									<select name="language" id="language" onchange="gotoSection(this.value)">
-								<form action="" class="language-picker__form">
-									<label for="language-picker-select">Select your language</label>
-									<select name="language-picker-select" id="language-picker-select" onchange="gotoSection(this.value)">
-										<option lang="en" value="index.html" selected><i class="flag flag-england"></i>&nbsp;&nbsp;English</option>
-										<option lang="de" value="index_de.html">&nbsp;&nbsp;Deutsch</option>
-										<option lang="nl" value="index_nl.html">&nbsp;&nbsp;Nederlands</option>
-									</select>
-								</form>
-							</div> -->
+							<!-- <div class="simply-countdown simply-countdown-one"></div>
+							<p><a href="LoveDay Mieke & Mario.ics" class="btn btn-default btn-sm">Save the date</a></p> -->
+							<p><a href="https://drive.google.com/drive/folders/16yeiqWiNmhgIT6XgpAmVHq78rt3nE9BM?usp=sharing" target="_blank" class="btn btn-default btn-sm">Pictures and Videos</a></p>
 						</div>
 					</div>
 				</div>
@@ -129,10 +230,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<h2><a id = "love_day">Love Day</a></h2>
-					<h3>19<sup>th</sup> August 2023</h3>
-          <h3>Between Tiny Houses in Den Hoorn ZH, Netherlands</h3>
-					<p>A celebration of our love for us, for you, and our surroundings</p>
+					<h2><a id="love_day">Thank You</a></h2>
+					<p>... for making memories with us which feels to us as if we got married yesterday!</p>
 				</div>
 			</div>
 			<div class="couple-wrap animate-box">
@@ -141,8 +240,7 @@
 						<img src="images/bride.jpg" alt="bride" class="img-responsive">
 					</div>
 					<div class="desc-bride">
-						<h3>Mieke van der Laan</h3>
-						<p>If you don't pay attention, then Mieke will engolf you with her love and care for others and her surroundings. Mieke is an explorer at heart who loves the active outdoors, especially hiking, biking, kayaking, anything, with an -ing.</p>
+						<p>We had an amazing time celebrating our wedding day with everyone. It was a day filled with love, laughter, and unforgettable memories. It might have taken us a while to share the photos with everyone (about a year), but hey, good things come to those who are patient!</p>
 					</div>
 				</div>
 				<p class="heart text-center"><i class="icon-heart2"></i></p>
@@ -151,631 +249,73 @@
 						<img src="images/groom.png" alt="groom" class="img-responsive">
 					</div>
 					<div class="desc-groom">
-						<h3>Mario Beck</h3>
-						<p>Despite his height, Mario is a gentle soul, who loves the occasional pun. If you don't watch your six, Mario will convince you to join one of his projects and you will have lost all your free time. Next to that, he loves to have deep conversations.</p>
+						<p>The past year has been a rollercoaster for us. The birth of our daughter Felien, the passing of Mieke's father... The extremes of life in too close proximity. We are lucky to have friends and family to celebrate our happy moments and to be there for us during the difficult times.</p>
 					</div>
+				</div>
+				<!-- Add the button here -->
+				<div class="text-center">
+					<p><a href="https://drive.google.com/drive/folders/16yeiqWiNmhgIT6XgpAmVHq78rt3nE9BM?usp=sharing" target="_blank" class="btn btn-default btn-sm">Pictures and Videos</a></p>
 				</div>
 			</div>
 		</div>
 	</div>
 
+    <!-- <h2>Photo Gallery</h2> -->
+    <div class="gallery">
+        <!-- Loop through images -->
+        <script>
+            const imageCount = 60;
+            const galleryDiv = document.querySelector('.gallery');
+            for (let i = 1; i <= imageCount; i++) {
+                const img = document.createElement('img');
+                img.src = `images/wedding_pics/${i}.jpg`; // Adjust the naming convention as needed
+                img.alt = `Photo ${i}`;
+                img.onclick = function() {
+                    openModal(img.src);
+                };
+                galleryDiv.appendChild(img);
+            }
 
-	<div id="fh5co-event" class="fh5co-bg" style="background-image:url(images/tinyhouse.jpg);">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<span>Our Special Event</span>
-					<a id = "program"><h2>Program</h2></a>
-				</div>
-			</div>
-			<div class="row animate-box">
-				<div class="display-t">
-					<div class="display-tc">
-						<div class="col-md-10 col-md-offset-1">
-							<div class="col-md-4 col-sm-4 text-center">
-								<div class="event-wrap animate-box">
-									<h3>Tents & Welcome</h3>
-									<div class="event-col">
-										<span><i class="icon-clock"></i> 13:00 - 14:00</span>
-									</div>
-									<!-- <div class="event-col">
-										<i class="icon-clock"></i>
-										<span>14:00</span>
-										<span>14:30</span>
-									</div>
-									<div class="event-col">
-										<i class="icon-calendar"></i>
-										<span>Saturday 19<sup>th</sup></span>
-										<span>August 2023</span>
-									</div> -->
-									<p>Outdoor lovers can pitch their tent from 13:00. <a>Day-Guests</a> are welcome from 13:30.</p> 
-									<!-- .Wedding guests arrive and are shown their way to where they need to be -->
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-4 text-center">
-								<div class="event-wrap animate-box">
-									<h3>Ceremony</h3>
-									<div class="event-col">
-										<span><i class="icon-clock"></i> 14:00 - 14:45</span>
-									</div>
-									<!-- <div class="event-col">
-										<i class="icon-clock"></i>
-										<span>14:30</span>
-										<span>15:00</span>
-									</div>
-									<div class="event-col">
-										<i class="icon-calendar"></i>
-										<span>Saturday 19<sup>th</sup></span>
-										<span>August 2023</span>
-									</div> -->
-									<p>A celebration of M&M's love for each other, friends, family, and the environment.</p>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-4 text-center">
-								<div class="event-wrap animate-box">
-									<h3>Congrats Cake Co</h3>
-									<div class="event-col">
-										<span><i class="icon-clock"></i> 14:45 - 18:00</span>
-									</div>
-									<!-- <div class="event-col">
-										<i class="icon-clock"></i>
-										<span>15:00</span>
-										<span>19:00</span>
-									</div>
-									<div class="event-col">
-										<i class="icon-calendar"></i>
-										<span>Saturday 19<sup>th</sup></span>
-										<span>August 2023</span>
-									</div> -->
-									<p>Congratulations, photos, cake, coffee, games and fun. As well as the occasional speech.</p>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-4 text-center">
-								<div class="event-wrap animate-box">
-									<h3>Dinner</h3>
-									<div class="event-col">
-										<span><i class="icon-clock"></i> 18:00 - 20:00</span>
-									</div>
-									<!-- <div class="event-col">
-										<i class="icon-clock"></i>
-										<span>19:00 PM</span>
-										<span>21:00 AM</span>
-									</div>
-									<div class="event-col">
-										<i class="icon-calendar"></i>
-										<span>Saturday 19<sup>th</sup></span>
-										<span>August 2023</span>
-									</div> -->
-									<p>We will arrange a plant-based dinner for all of us to enjoy on our lovely location.</p>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-4 text-center">
-								<div class="event-wrap animate-box">
-									<h3>Band</h3>
-									<div class="event-col">
-										<span><i class="icon-clock"></i> 20:00 - 22:00</span>
-									</div>
-									<!-- <div class="event-col">
-										<i class="icon-clock"></i>
-										<span>21:00</span>
-										<span>04:00</span>
-									</div> -->
-									<!-- <div class="event-col">
-										<i class="icon-calendar"></i>
-										<span>Saturday 19<sup>th</sup></span>
-										<span>August 2023</span>
-									</div> -->
-									<p>The band <a class="popup-youtube" href="https://www.youtube.com/watch?v=WvZvnyoJ5KY?rel=0&ytp-pause-overlay=0?autoplay=1">Baragan</a> will help us dance &#x1F389;. <a>Evening-Guests</a> are welcome from 20:00.</p>
-								</div>
-							</div>
-							<div class="col-md-4 col-sm-4 text-center">
-								<div class="event-wrap animate-box">
-									<h3>Party & Campfire</h3>
-									<div class="event-col">
-										<span><i class="icon-clock"></i> 22:00 - ...</span>
-									</div>
-									<!-- <div class="event-col">
-										<i class="icon-clock"></i>
-										<span>13:30</span>
-										<span>14:00</span>
-									</div>
-									<div class="event-col">
-										<i class="icon-calendar"></i>
-										<span>Saturday 19<sup>th</sup></span>
-										<span>August 2023</span>
-									</div> -->
-									<p>We will dance together into the night, and recharge while taking a break at a campfire.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            function openModal(src) {
+                const modal = document.getElementById('myModal');
+                const modalImg = document.getElementById('img01');
+                modal.style.display = "block";
+                modalImg.src = src;
+            }
 
-	<div id="fh5co-gallery" class="fh5co-section-gray">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1 text-center fh5co-heading animate-box">
-					<span>What to do with Questions?</span>
-					<h2><a id="wedding_pictures">Contact</a></h2>
-					<p>In case you have questions or would like to contribute a speech or other activity, please contact our best man and women. In some uncommon cases, you might also want to contact us directly.</p>
-					<div class="display-tc animate-box" data-animate-effect="fadeIn">
-						<a href="tel:+31621528333" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56"><b>Jiske</b> <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgOSA2Ij4NCjxyZWN0IGZpbGw9IiMyMTQ2OEIiCXdpZHRoPSI5IiBoZWlnaHQ9IjYiLz4NCjxyZWN0IGZpbGw9IiNGRkYiIHdpZHRoPSI5IiBoZWlnaHQ9IjQiLz4NCjxyZWN0IGZpbGw9IiNBRTFDMjgiCXdpZHRoPSI5IiBoZWlnaHQ9IjIiLz4NCjwvc3ZnPg==" height="11px">/ <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23002781' d='M46,6H2C0.896,6,0,6.896,0,8v32c0,1.104,0.896,2,2,2h44c1.104,0,2-0.896,2-2V8C48,6.896,47.104,6,46,6z'/%3E%3Cpath fill='%23E6E6E6' d='M48,8c0-1.104-0.896-2-2-2h-5.161L28,15.876V6h-8v9.876L7.161,6H2C0.896,6,0,6.896,0,8v2.586L12.239,20H0v8 h12.239L0,37.415V40c0,1.104,0.896,2,2,2h5.161L20,32.124V42h8v-9.876L40.839,42H46c1.104,0,2-0.896,2-2v-2.585L35.761,28H48v-8 H35.761L48,10.586V8z'/%3E%3Cpolygon fill='%23D10D24' points='48,22 26,22 26,6 22,6 22,22 0,22 0,26 22,26 22,42 26,42 26,26 48,26 '/%3E%3Cpath fill='%23D10D24' d='M47.001,6.307L29.2,20h3.28L48,8.062V8C48,7.268,47.587,6.656,47.001,6.307z'/%3E%3Cpath fill='%23D10D24' d='M32.48,28H29.2l17.801,13.693C47.587,41.344,48,40.732,48,40v-0.062L32.48,28z'/%3E%3Cpath fill='%23D10D24' d='M15.52,28L0,39.938V40c0,0.732,0.413,1.344,0.999,1.693L18.8,28H15.52z'/%3E%3Cpath fill='%23D10D24' d='M15.52,20h3.28L0.999,6.307C0.413,6.656,0,7.268,0,8v0.062L15.52,20z'/%3E%3C/svg%3E" height="15px"> +31 6 21 52 83 33</a>
-						<a href="tel:+4917622760014" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56"><b>Julian</b> <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M48,18H0V8c0-1.105,0.895-2,2-2h44c1.105,0,2,0.895,2,2V18z'/%3E%3Crect y='18' fill='%23EE0000' width='48' height='12'/%3E%3Cpath fill='%23FDCF00' d='M48,40c0,1.105-0.895,2-2,2H2c-1.105,0-2-0.895-2-2V30h48V40z'/%3E%3C/svg%3E" height="15px">/ <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23002781' d='M46,6H2C0.896,6,0,6.896,0,8v32c0,1.104,0.896,2,2,2h44c1.104,0,2-0.896,2-2V8C48,6.896,47.104,6,46,6z'/%3E%3Cpath fill='%23E6E6E6' d='M48,8c0-1.104-0.896-2-2-2h-5.161L28,15.876V6h-8v9.876L7.161,6H2C0.896,6,0,6.896,0,8v2.586L12.239,20H0v8 h12.239L0,37.415V40c0,1.104,0.896,2,2,2h5.161L20,32.124V42h8v-9.876L40.839,42H46c1.104,0,2-0.896,2-2v-2.585L35.761,28H48v-8 H35.761L48,10.586V8z'/%3E%3Cpolygon fill='%23D10D24' points='48,22 26,22 26,6 22,6 22,22 0,22 0,26 22,26 22,42 26,42 26,26 48,26 '/%3E%3Cpath fill='%23D10D24' d='M47.001,6.307L29.2,20h3.28L48,8.062V8C48,7.268,47.587,6.656,47.001,6.307z'/%3E%3Cpath fill='%23D10D24' d='M32.48,28H29.2l17.801,13.693C47.587,41.344,48,40.732,48,40v-0.062L32.48,28z'/%3E%3Cpath fill='%23D10D24' d='M15.52,28L0,39.938V40c0,0.732,0.413,1.344,0.999,1.693L18.8,28H15.52z'/%3E%3Cpath fill='%23D10D24' d='M15.52,20h3.28L0.999,6.307C0.413,6.656,0,7.268,0,8v0.062L15.52,20z'/%3E%3C/svg%3E" height="15px"> +49 1 76 22 76 00 14</a>
-						<a href="tel:+31619472903" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56"><b>Nina</b> <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgOSA2Ij4NCjxyZWN0IGZpbGw9IiMyMTQ2OEIiCXdpZHRoPSI5IiBoZWlnaHQ9IjYiLz4NCjxyZWN0IGZpbGw9IiNGRkYiIHdpZHRoPSI5IiBoZWlnaHQ9IjQiLz4NCjxyZWN0IGZpbGw9IiNBRTFDMjgiCXdpZHRoPSI5IiBoZWlnaHQ9IjIiLz4NCjwvc3ZnPg==" height="11px">/ <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23002781' d='M46,6H2C0.896,6,0,6.896,0,8v32c0,1.104,0.896,2,2,2h44c1.104,0,2-0.896,2-2V8C48,6.896,47.104,6,46,6z'/%3E%3Cpath fill='%23E6E6E6' d='M48,8c0-1.104-0.896-2-2-2h-5.161L28,15.876V6h-8v9.876L7.161,6H2C0.896,6,0,6.896,0,8v2.586L12.239,20H0v8 h12.239L0,37.415V40c0,1.104,0.896,2,2,2h5.161L20,32.124V42h8v-9.876L40.839,42H46c1.104,0,2-0.896,2-2v-2.585L35.761,28H48v-8 H35.761L48,10.586V8z'/%3E%3Cpolygon fill='%23D10D24' points='48,22 26,22 26,6 22,6 22,22 0,22 0,26 22,26 22,42 26,42 26,26 48,26 '/%3E%3Cpath fill='%23D10D24' d='M47.001,6.307L29.2,20h3.28L48,8.062V8C48,7.268,47.587,6.656,47.001,6.307z'/%3E%3Cpath fill='%23D10D24' d='M32.48,28H29.2l17.801,13.693C47.587,41.344,48,40.732,48,40v-0.062L32.48,28z'/%3E%3Cpath fill='%23D10D24' d='M15.52,28L0,39.938V40c0,0.732,0.413,1.344,0.999,1.693L18.8,28H15.52z'/%3E%3Cpath fill='%23D10D24' d='M15.52,20h3.28L0.999,6.307C0.413,6.656,0,7.268,0,8v0.062L15.52,20z'/%3E%3C/svg%3E" height="15px"> +31 6 19 47 29 03</a>
-						<a href="tel:+31611051946" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56"><b>Mieke</b> <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgOSA2Ij4NCjxyZWN0IGZpbGw9IiMyMTQ2OEIiCXdpZHRoPSI5IiBoZWlnaHQ9IjYiLz4NCjxyZWN0IGZpbGw9IiNGRkYiIHdpZHRoPSI5IiBoZWlnaHQ9IjQiLz4NCjxyZWN0IGZpbGw9IiNBRTFDMjgiCXdpZHRoPSI5IiBoZWlnaHQ9IjIiLz4NCjwvc3ZnPg==" height="11px">/ <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23002781' d='M46,6H2C0.896,6,0,6.896,0,8v32c0,1.104,0.896,2,2,2h44c1.104,0,2-0.896,2-2V8C48,6.896,47.104,6,46,6z'/%3E%3Cpath fill='%23E6E6E6' d='M48,8c0-1.104-0.896-2-2-2h-5.161L28,15.876V6h-8v9.876L7.161,6H2C0.896,6,0,6.896,0,8v2.586L12.239,20H0v8 h12.239L0,37.415V40c0,1.104,0.896,2,2,2h5.161L20,32.124V42h8v-9.876L40.839,42H46c1.104,0,2-0.896,2-2v-2.585L35.761,28H48v-8 H35.761L48,10.586V8z'/%3E%3Cpolygon fill='%23D10D24' points='48,22 26,22 26,6 22,6 22,22 0,22 0,26 22,26 22,42 26,42 26,26 48,26 '/%3E%3Cpath fill='%23D10D24' d='M47.001,6.307L29.2,20h3.28L48,8.062V8C48,7.268,47.587,6.656,47.001,6.307z'/%3E%3Cpath fill='%23D10D24' d='M32.48,28H29.2l17.801,13.693C47.587,41.344,48,40.732,48,40v-0.062L32.48,28z'/%3E%3Cpath fill='%23D10D24' d='M15.52,28L0,39.938V40c0,0.732,0.413,1.344,0.999,1.693L18.8,28H15.52z'/%3E%3Cpath fill='%23D10D24' d='M15.52,20h3.28L0.999,6.307C0.413,6.656,0,7.268,0,8v0.062L15.52,20z'/%3E%3C/svg%3E" height="15px">/ <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M48,18H0V8c0-1.105,0.895-2,2-2h44c1.105,0,2,0.895,2,2V18z'/%3E%3Crect y='18' fill='%23EE0000' width='48' height='12'/%3E%3Cpath fill='%23FDCF00' d='M48,40c0,1.105-0.895,2-2,2H2c-1.105,0-2-0.895-2-2V30h48V40z'/%3E%3C/svg%3E" height="15px"> +31 6 11 05 19 46</a>
-						<a href="tel:+31616166105" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56"><b>Mario</b> <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M48,18H0V8c0-1.105,0.895-2,2-2h44c1.105,0,2,0.895,2,2V18z'/%3E%3Crect y='18' fill='%23EE0000' width='48' height='12'/%3E%3Cpath fill='%23FDCF00' d='M48,40c0,1.105-0.895,2-2,2H2c-1.105,0-2-0.895-2-2V30h48V40z'/%3E%3C/svg%3E" height="15px">/ <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23002781' d='M46,6H2C0.896,6,0,6.896,0,8v32c0,1.104,0.896,2,2,2h44c1.104,0,2-0.896,2-2V8C48,6.896,47.104,6,46,6z'/%3E%3Cpath fill='%23E6E6E6' d='M48,8c0-1.104-0.896-2-2-2h-5.161L28,15.876V6h-8v9.876L7.161,6H2C0.896,6,0,6.896,0,8v2.586L12.239,20H0v8 h12.239L0,37.415V40c0,1.104,0.896,2,2,2h5.161L20,32.124V42h8v-9.876L40.839,42H46c1.104,0,2-0.896,2-2v-2.585L35.761,28H48v-8 H35.761L48,10.586V8z'/%3E%3Cpolygon fill='%23D10D24' points='48,22 26,22 26,6 22,6 22,22 0,22 0,26 22,26 22,42 26,42 26,26 48,26 '/%3E%3Cpath fill='%23D10D24' d='M47.001,6.307L29.2,20h3.28L48,8.062V8C48,7.268,47.587,6.656,47.001,6.307z'/%3E%3Cpath fill='%23D10D24' d='M32.48,28H29.2l17.801,13.693C47.587,41.344,48,40.732,48,40v-0.062L32.48,28z'/%3E%3Cpath fill='%23D10D24' d='M15.52,28L0,39.938V40c0,0.732,0.413,1.344,0.999,1.693L18.8,28H15.52z'/%3E%3Cpath fill='%23D10D24' d='M15.52,20h3.28L0.999,6.307C0.413,6.656,0,7.268,0,8v0.062L15.52,20z'/%3E%3C/svg%3E" height="15px">/ <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgOSA2Ij4NCjxyZWN0IGZpbGw9IiMyMTQ2OEIiCXdpZHRoPSI5IiBoZWlnaHQ9IjYiLz4NCjxyZWN0IGZpbGw9IiNGRkYiIHdpZHRoPSI5IiBoZWlnaHQ9IjQiLz4NCjxyZWN0IGZpbGw9IiNBRTFDMjgiCXdpZHRoPSI5IiBoZWlnaHQ9IjIiLz4NCjwvc3ZnPg==" height="11px"> +31 6 16 16 61 05</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            function closeModal() {
+                const modal = document.getElementById('myModal');
+                modal.style.display = "none";
+            }
 
-	<div id="fh5co-couple-story">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<span>How We Met</span>
-					<h2><a id = "our_story">Our Story</a></h2>
-					<p>Far far away, in a small student town called Wageningen. There once lived two people who were drawn to each other...</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 col-md-offset-0">
-					<ul class="timeline animate-box">
-						<li class="animate-box">
-							<div class="timeline-badge" style="background-image:url(images/couple-1.jpg);"></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">An Innocent Lunch</h3>
-									<span class="date">Feb 2015</span>
-								</div>
-								<div class="timeline-body">
-									<p>In a lunch room at Wageningen University Mieke and Mario met for the first time. An innocent talk, and without any luck, they might have passed each other. What a luck, that luck exists &#x1F609;.</p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-inverted animate-box">
-							<div class="timeline-badge" style="background-image:url(images/couple-2.jpg);"></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">5:00 In the Morning</h3>
-									<span class="date">7<sup>th</sup> March 2015</span>
-								</div>
-								<div class="timeline-body">
-									<p>While the best man Julian, was over for a visit in the Netherlands with his to-be wife (Jana), Mario urged them to stay longer at a party to steal a kiss from Mieke. It took until 5:00 in the morning, but that dancing and talking night, marked the beginning of many more to come.</p>
-								</div>
-							</div>
-						</li>
-						<li class="animate-box">
-							<div class="timeline-badge" style="background-image:url(images/couple-3.jpg);"></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Exploring Nature</h3>
-									<span class="date">Years In Between</span>
-								</div>
-								<div class="timeline-body">
-									<p>In the years Mieke and Mario were blessed to have together already, they like to take an explorer mindset. In the spirit of Sir David Attenborough, you might find these love-birds exploring nature by the usual means of transport or more exotic ones like sailboat, hiking, or kayaking. The two latest active outdoor holiday additions in the pack are kite surfing and wintersport. The magnificence of nature certainly contributed to giving those two souls a special bond.</p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-inverted animate-box">
-							<div class="timeline-badge" style="background-image:url(images/couple-4.jpg);"></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Finding our Nature Spot</h3>
-									<span class="date">31<sup>st</sup> July 2020</span>
-								</div>
-								<div class="timeline-body">
-									<p>To this day, it is unclear whether self-interest played a role in the events which unfold, when Jolanda, Mieke's Mom, send a link about buying a Tiny House within 15 minutes walking distance of her own domicile. After rounds of interviews from the Tiny House community - a.k.a. Kluit, Mieke and Mario were enourmously grateful, that they would have the priviledge to buy and live in a Tiny House of the community. Who knows, maybe bringing some German bread, as a little thank you present in the last interview round, terned the tides into their favour?</p>
-								</div>
-							</div>
-						</li>
-						<li class="animate-box">
-							<div class="timeline-badge" style="background-image:url(images/couple-5.jpg);"></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Fast Forward to Proposing</h3>
-									<span class="date">30<sup>th</sup> October 2021</span>
-								</div>
-								<div class="timeline-body">
-									<p>While we both always built on our relationship and love for each other, we did not know for quite a while whether we wanted an official married couple status. After a late night proposal from Mieke, which we postponed due to tibsyness &#x1F37B; &#x1F974; for another moment, Mario waited a few weeks, months, years for a repetition. When one day he was running a half marathon for himself and thought, "If I would die tomorrow, what would I like to do today, which I can actually do today?". That's when he picked some flowers from the side of the road, prepared a little make shift ring, and proposed to Mieke on the spot (completely sweaty) when he came home <a>&#x2764;</a></p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-inverted animate-box">
-							<div class="timeline-badge" style="background-image:url(images/municipal.jpg);"></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Municipal Wedding</h3>
-									<span class="date">2<sup>nd</sup> May 2023</span>
-								</div>
-								<div class="timeline-body">
-									<p>Both Mieke and Mario have the tendency to decide for the unkown, the new, the not-so-smooth path contradicting public perceived standard approaches. Their love for them is not a ceremony which is to be accredited by an unkown person. So, they decided to have the municipal wedding with a very small circle, and have the real-deal wedding, with ceremony, vows, party, dance, and all of you at a later moment.</p>
-								</div>
-							</div>
-						</li>
-						<li class="animate-box">
-							<div class="timeline-badge" style="background-image:url(images/couple-7.jpg);"></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">LoveDay</h3>
-									<span class="date">19<sup>th</sup> August 2023</span>
-								</div>
-								<div class="timeline-body">
-									<p>Who knows what all will happen this day? What we all know for sure, is that Mieke and Mario are looking forward to sharing this day with you in celebration!</p>
-								</div>
-							</div>
-						</li>
-			    	</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+            // Close the modal when clicking outside the image
+            document.addEventListener('click', function(event) {
+                const modal = document.getElementById('myModal');
+                if (event.target === modal || event.target.classList.contains('close')) {
+                    closeModal();
+                }
+            });
 
-	<div id="fh5co-gallery" class="fh5co-section-gray">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<span>How to get to where you need to be</span>
-					<h2><a id="parking">Car Parking</a></h2>
-					<p>Here we provided a map to guide you last minute. Please consider in your time planning, that it takes <b><a>15 minutes to walk</a></b> from the parking location at the Van der Valk Hotel to our ceremony location!</p>
-					<div class="display-tc animate-box" data-animate-effect="fadeIn">
-						<a href="https://goo.gl/maps/udtg3Y7dK9LdggYa7" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56">Parking</a>
-						<a href="https://goo.gl/maps/6hRaarbAc4zwK1Sa6" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56">Ceremony</a>
-					</div>
-					<!-- <div class="overlay"></div>
-					<div class="container">
-						<div class="row">
-							<div class="col-md-8 col-md-offset-2 text-center">
-								<div class="display-t">
-									<div class="display-tc animate-box" data-animate-effect="fadeIn">
-										<a href="https://goo.gl/maps/fM6K14XneFaoZWQ46" target="_blank" class="btn btn-default btn-sm">Entrance A</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
-					<!-- <div id="fh5co-event" class="fh5co-bg" style="background-image:url(images/location.jpg);">
-						<div class="overlay"></div>
-						<div class="location">Location</div>
-					</div> -->
-				</div>
-			</div>
-		</div>
-		<div class="location-container">
-			<a href="https://goo.gl/maps/udtg3Y7dK9LdggYa7" target="_blank"><img src="images/parking_explained.jpg" alt="location" width="60%"></a>
-			<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2455.9443933528396!2d4.31262081597109!3d52.00789118180606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b43f3ea68ef3%3A0x51a60d6dc17fc05f!2sWoudselaan%2012d%2C%202635%20CH%20Den%20Hoorn!5e0!3m2!1sen!2snl!4v1680358512410!5m2!1sen!2snl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-			<!-- <div class="entranceA"><a href="https://goo.gl/maps/Dn5KVMxbWFyzDGTZ7" target="_blank">Entrance A</a></div> -->
-		</div>
-	</div>
-
-
-	<div id="fh5co-gallery" class="fh5co-section-gray">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<span>How to get to where you need to be</span>
-					<h2><a id="wedding_pictures">Location</a></h2>
-					<p>You made it to the wedding location, now where do you need to be? We will provide wooden boards to tell you where you can find what. But also this lovely map.</p>
-					<div class="display-tc animate-box" data-animate-effect="fadeIn">
-						<a href="https://goo.gl/maps/fM6K14XneFaoZWQ46" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56">Entrance Field</a>
-						<a href="https://goo.gl/maps/GoE8yxkFSUTauMd79" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56">Entrance Woudselaan</a>
-						<a href="https://goo.gl/maps/vpSeyVAAfZaQweas9" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56">Entrance Lookwatering</a>
-						<a href="https://goo.gl/maps/18uLuB4NAS4XukkQ6" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56">Parking - Bikes</a>
-						<a href="https://goo.gl/maps/73cBzGHuKyq5ciZh8" target="_blank" class="btn btn-default btn-sm" style="color:#0aad56">Parking - Cars</a>
-					</div>
-					<!-- <div class="overlay"></div>
-					<div class="container">
-						<div class="row">
-							<div class="col-md-8 col-md-offset-2 text-center">
-								<div class="display-t">
-									<div class="display-tc animate-box" data-animate-effect="fadeIn">
-										<a href="https://goo.gl/maps/fM6K14XneFaoZWQ46" target="_blank" class="btn btn-default btn-sm">Entrance A</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
-					<!-- <div id="fh5co-event" class="fh5co-bg" style="background-image:url(images/location.jpg);">
-						<div class="overlay"></div>
-						<div class="location">Location</div>
-					</div> -->
-				</div>
-			</div>
-		</div>
-		<div class="location-container">
-			<a href="https://goo.gl/maps/fM6K14XneFaoZWQ46" target="_blank"><img src="images/location_active_en.jpg" alt="location" width="100%"></a>
-			<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2455.9443933528396!2d4.31262081597109!3d52.00789118180606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b43f3ea68ef3%3A0x51a60d6dc17fc05f!2sWoudselaan%2012d%2C%202635%20CH%20Den%20Hoorn!5e0!3m2!1sen!2snl!4v1680358512410!5m2!1sen!2snl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-			<!-- <div class="entranceA"><a href="https://goo.gl/maps/Dn5KVMxbWFyzDGTZ7" target="_blank">Entrance A</a></div> -->
-		</div>
-	</div>
-
-	<!-- <div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url(images/img_bg_5.jpg);">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="display-t">
-					<div class="display-tc">
-						<div class="col-md-3 col-sm-6 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-users"></i>
-								</span>
-
-								<span class="counter js-counter" data-from="0" data-to="120" data-speed="5000" data-refresh-interval="50">1</span>
-								<span class="counter-label">Estimated Guests</span>
-
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-user"></i>
-								</span>
-
-								<span class="counter js-counter" data-from="0" data-to="1000" data-speed="5000" data-refresh-interval="50">1</span>
-								<span class="counter-label">Expected Presents</span>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-calendar"></i>
-								</span>
-								<span class="counter js-counter" data-from="0" data-to="402" data-speed="5000" data-refresh-interval="50">1</span>
-								<span class="counter-label">Events Done</span>
-							</div>
-						</div>
-						<div class="col-md-3 col-sm-6 animate-box">
-							<div class="feature-center">
-								<span class="icon">
-									<i class="icon-clock"></i>
-								</span>
-
-								<span class="counter js-counter" data-from="0" data-to="2345" data-speed="5000" data-refresh-interval="50">1</span>
-								<span class="counter-label">Hours Spent</span>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-	<div id="fh5co-testimonial">
-		<div class="container">
-			<div class="row">
-				<div class="row animate-box">
-					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-						<span>Making People and the Environment Happy</span>
-						<h2><a id="present_ideas">Present Ideas</a></h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 animate-box">
-						<div class="wrap-testimony">
-							<div class="owl-carousel-fullwidth">
-								<div class="item">
-									<div class="testimony-slide text-center">
-										<figure>
-											<img src="images/present.jpg" alt="user">
-										</figure>
-										<!-- <span>John Doe, via <a href="#" class="twitter">Twitter</a></span> -->
-										<blockquote>
-											<p>Every party costs money, so we would be grateful about a monetary contribution. Yet, let's face it, paying for a party is a luxury problem and we would be equally, if not more grateful, if you would like us to make a contribution on your behalf, or you making a contribution directly to one of the three causes: <a href="https://nutritionfacts.org/donate" target="_blank">people</a>, <a href="https://www.atmosfair.de/de/spenden/" target="_blank">planet</a>, and <a href="https://donate.givedirectly.org/" target="_blank">profit</a>.</p>
-										</blockquote>
-									</div>
-								</div>
-								<div class="item">
-									<div class="testimony-slide active text-center">
-										<figure>
-											<img src="images/donation.jpg" alt="user">
-										</figure>
-										<h5>People: <a href="https://nutritionfacts.org/donate" target="_blank">nutritionfacts.org</a></h5>
-										<blockquote>
-											<p>Millions suffer needlessly from health problems that may be prevented, arrested, and even reversed with simple dietary and lifestyle changes. However, individuals who want to make the best choices for themselves and their families often face a deluge of confusing and conflicting nutritional advice. The goal of our public service nonprofit is to present the results of the latest in peer-reviewed nutrition research, delivered in a way that is easy to understand.</p>
-											<!-- <p>Mieke and Mario have trust in science. Setting up a hypothesis, testing it, and drawing conclusions from these experiments, gives the best chances to understand an issue at its core. The people behind <a href="https://nutritionfacts.org/donate" target="_blank">nutritionfacts.org</a> even go the extra (important) mile, to check the funding parties of a research eneavour. And lastly, nutrifionfacts.org does not take money from institutions, or other parties other than you and me. This means, they are truly free to say and do what honest research has shown.</p> -->
-										</blockquote>
-									</div>
-								</div>
-								<div class="item">
-									<div class="testimony-slide active text-center">
-										<figure>
-											<img src="images/donation.jpg" alt="user">
-										</figure>
-										<h5>Planet: <a href="https://www.atmosfair.de/de/spenden/" target="_blank">atmosfair.de</a></h5>
-										<blockquote>
-											<p>Atmosfair uses your climate protection contribution to establish and expand renewable energies in the Global South, such as the rural electrification of villages with photovoltaic systems and mini-grids in Madagascar, small biogas systems for farms in Nepal or firewood-saving stoves in Rwanda. This also creates jobs and new perspectives for the local people.</p>
-										</blockquote>
-									</div>
-								</div>
-								<div class="item">
-									<div class="testimony-slide active text-center">
-										<figure>
-											<img src="images/donation.jpg" alt="user">
-										</figure>
-										<h5>Profit: <a href="https://donate.givedirectly.org/" target="_blank">givedirectly.org</a></h5>
-										<blockquote>
-											<p>GiveDirectly is the leading global NGO specialized in delivering digital cash transfers. They have worked in challenging contexts across 11 countries, and launched 19 experimental evaluations (RCTs) with independent researchers documenting the impacts on recipients and on the local economy. It turns out, people use cash on medicine, cows and goats and chickens, school fees, water, solar lights, tin roofs, irrigation, motorcycles to jumpstart taxi services, businesses to generate income, and more.</p>
-										</blockquote>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="fh5co-services" class="fh5co-section-gray">
-		<div class="container">
-			
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2>Where to Sleep?</h2>
-					<p>There are three major options on location.</p>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-6">
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-home"></i> 
-						</span>
-						<div class="feature-copy">
-							<h3>Pitch a Tent</h3>
-							<p>We will prepare a nice tent area for those outdoor/ low-budget enthusiasts. Toilets are provided.</p>
-						</div>
-					</div>
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-suitcase"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>Sleep in a Hotel</h3>
-							<p>There is a brand new Van der Valk hotel in 10 minutes walking distance from our house/ the wedding location. Use this <a href="https://www.valkverrast.nl/acties" target="_blank">link</a> to get a special discount with breakfast, or book even cheaper without breakfast <a href="https://booking-v3.vandervalkonline.com/nl/dft/configuration?arrival=2023-8-19&departure=2023-8-20&adults=2&roomsAmount=1&sid=FC9C651C7EB4530AFA903F894D8F0361&_ga=2.116142789.211752150.1680357332-318000826.1680127623" target="_blank">here</a>. Unfortunately, the prices change almost daily so writing those down here does not help. Please check them yourself. Here the three different discount codes:
-								<ul>
-									<li>2 people: <a>DFT-trouwfeestMarioMieke</a></li>
-									<li>4 people: <a>DFT-trouwfeestMarioMiekeVIER</a></li>
-									<li>4 people family: <a>DFT-trouwfeestMarioMiekeFAM</a></li>
-								</ul>
-							</p>
-						</div>
-					</div>
-
-					<div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-volume"></i>
-						</span>
-						<div class="feature-copy">
-							<h3>Party Animal</h3>
-							<p>Sleep? I either have kids and don't sleep anyways or I don't have them and want to party all night long. In anycase, welcome to the night shift crew &#x1F46F;</p>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="col-md-6 animate-box">
-					<div class="fh5co-video fh5co-bg" style="background-image: url(images/img_bg_3.jpg); ">
-						<a class="popup-youtube" href="https://www.youtube.com/watch?v=DvlXBL1Jzmk?rel=0&ytp-pause-overlay=0?autoplay=1"><i class="icon-video2"></i></a>
-						<div class="overlay"></div>
-					</div>
-				</div>
-			</div>
-
-			
-		</div>
-	</div>
-
-
-	<div id="fh5co-testimonial">
-		<div class="container">
-			<div class="row">
-				<div class="row animate-box">
-					<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-						<span>Don't Know What to Wear?</span>
-						<h2><a id="dresscode">Dress Code</a></h2>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 animate-box">
-						<div class="wrap-testimony">
-							<div class="owl-carousel-fullwidth">
-								<div class="item">
-									<div class="testimony-slide text-center">
-										<figure>
-											<img src="images/dresscode.jpg" alt="user">
-										</figure>
-										<!-- <span>John Doe, via <a href="#" class="twitter">Twitter</a></span> -->
-										<blockquote>
-											<p>We appreciate it, if you can make it, no matter what you wear! But if you would like a bit of guidance what to pick from your wardrobe, we would appreciate it if you pick a <a href="https://www.erindavies.com/blog/decoding-the-dress-code" target="_blank">garden attire</a> outfit - something similar to the sketched picture. Please consider, the venue is on a grass field, wood chips, and wooden floor, so better no high-heels. Do not forget to bring some warm clothes for the night - this is an outdoor wedding.</p>
-										</blockquote>
-									</div>
-								</div>
-								<div class="item">
-									<div class="testimony-slide active text-center">
-										<figure>
-											<img src="images/flower.jpg" alt="user">
-										</figure>
-										<blockquote>
-											<p>As a special easteregg, we'd appreciate it, if you could integrate a flower in your outfit.</p>
-										</blockquote>
-									</div>
-								</div>
-								<!-- <div class="item">
-									<div class="testimony-slide active text-center">
-										<figure>
-											<img src="images/couple-3.jpg" alt="user">
-										</figure>
-										<span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
-										<blockquote>
-											<a id = "where_to_sleep"><p>"Far far away, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p></a>
-										</blockquote>
-									</div>
-								</div> -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="fh5co-started" class="fh5co-bg" style="background-image:url(images/img_bg_44.png);">
-		<div class="container">
-			<div class="row"> <!-- animate-box -->
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-					<h2><a>Are You Attending?</a></h2>
-					<p>Please fill-in the form to notify us if you<br>attend by the <a>end of May</a>. Thanks.</p>
-				</div>
-			</div>
-			<div class="row">
-				<!-- <div class="col-md-10 col-md-offset-1"> -->
-				<div class="ratio ratio-4x3 justify-content-center align-items-center mx-auto" style="display: flex; justify-content: center;">
-					<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScJl_AB77EWPez-MjLLhqRWDMkCEPNs89D5KznIQyk9S5OKnQ/viewform?embedded=true" width="640" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-					<!-- <form class="form-inline">
-						How to embed google form in website? Does unfortunately not work. So we embed an iFrame...
-						https://www.developerdrive.com/add-google-forms-static-site/
-						<div class="col-md-4 col-sm-4">
-							<div class="form-group">
-								<label for="name" class="sr-only">Name</label>
-								<input type="name" class="form-control" id="name" placeholder="Name">
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-4">
-							<div class="form-group">
-								<label for="email" class="sr-only">Email</label>
-								<input type="email" class="form-control" id="email" placeholder="Email">
-							</div>
-						</div>
-						<div class="col-md-4 col-sm-4">
-							<button type="submit" class="btn btn-default btn-block">Send</button>
-						</div>
-					</form> -->
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="fh5co-gallery" class="fh5co-section-gray">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<span>Memories</span>
-					<h2><a id="wedding_pictures">Wedding Pictures</a></h2>
-					<p>Once the pictures are processed after the wedding, we will put a selection here.</p>
-				</div>
-			</div>
-		</div>
-	</div>
+            // Close the modal when pressing the Esc key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+        </script>
+    </div>
+    <!-- <p>
+        <a href="https://wetransfer.com/downloads/YOUR_WETRANSFER_LINK" target="_blank">
+            Download all pictures on WeTransfer
+        </a>
+    </p> -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="img01" alt="Enlarged Photo">
+        </div>
+    </div>
 
 	<footer id="fh5co-footer" role="contentinfo">
 		<div class="container">

@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "miekeandmario"
+version = "0.1.0"
+description = ""
+authors = ["Mario Beck <22878918+marioisbeck@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pillow = "^10.4.0"
+moviepy = "^1.0.3"
+pydub = "^0.25.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

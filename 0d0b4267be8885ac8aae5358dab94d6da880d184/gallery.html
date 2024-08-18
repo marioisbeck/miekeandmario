@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo and Video Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 1fr;
+            gap: 10px;
+            padding: 20px;
+        }
+        .gallery img, .gallery video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover, .gallery video:hover {
+            transform: scale(1.05);
+        }
+        .gallery video {
+            display: block;
+            position: relative;
+        }
+        .gallery video::-webkit-media-controls {
+            display: none !important;
+        }
+        .gallery video:hover::-webkit-media-controls {
+            display: block !important;
+        }
+        .download-link {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .download-link a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .download-link a:hover {
+            background-color: #0056b3;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .modal-content {
+            margin: 2% auto;
+            display: block;
+            width: auto;
+            height: 85%;
+            max-width: 1200px;
+        }
+        .modal-content img, .modal-content video {
+            width: 100%;
+            height: auto;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Photo and Video Gallery</h1>
+    <div class="gallery">
+        <!-- Loop through images and videos -->
+        <script>
+            const mediaFiles = [
+                { type: 'image', src: 'images/wedding_pics/1.jpg' },
+                { type: 'video', src: 'images/videos/video1.mp4' },
+                { type: 'image', src: 'images/wedding_pics/2.jpg' },
+                { type: 'video', src: 'images/videos/video2.mp4' },
+                // Add more media files as needed
+            ];
+
+            const galleryDiv = document.querySelector('.gallery');
+            mediaFiles.forEach(file => {
+                if (file.type === 'image') {
+                    const img = document.createElement('img');
+                    img.src = file.src;
+                    img.alt = `Photo`;
+                    img.onclick = function() {
+                        openModal(file.type, img.src);
+                    };
+                    galleryDiv.appendChild(img);
+                } else if (file.type === 'video') {
+                    const video = document.createElement('video');
+                    video.src = file.src;
+                    video.controls = false;
+                    video.muted = true; // Mute the video to allow autoplay in Chrome
+                    video.alt = `Video`;
+                    video.onclick = function() {
+                        openModal(file.type, video.src);
+                    };
+                    video.onmouseover = function() {
+                        video.controls = true;
+                        video.muted = false; // Unmute the video when interacted with
+                    };
+                    video.onmouseout = function() {
+                        video.controls = false;
+                    };
+                    video.onended = function() {
+                        video.play(); // Restart the video when it ends
+                    };
+                    galleryDiv.appendChild(video);
+                }
+            });
+
+            function openModal(type, src) {
+                const modal = document.getElementById('myModal');
+                const modalContent = document.querySelector('.modal-content');
+                modal.style.display = "block";
+                modalContent.innerHTML = type === 'image' ? `<img src="${src}" alt="Enlarged Photo">` : `<video src="${src}" controls autoplay></video>`;
+            }
+
+            function closeModal() {
+                const modal = document.getElementById('myModal');
+                modal.style.display = "none";
+            }
+
+            // Close the modal when clicking outside the image
+            document.addEventListener('click', function(event) {
+                const modal = document.getElementById('myModal');
+                if (event.target === modal || event.target.classList.contains('close')) {
+                    closeModal();
+                }
+            });
+
+            // Close the modal when pressing the Esc key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeModal();
+                }
+            });
+
+            // IntersectionObserver to play videos when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.play();
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.gallery video').forEach(video => {
+                observer.observe(video);
+                video.addEventListener('canplay', () => {
+                    video.play(); // Start playing the video as soon as it can play
+                });
+            });
+        </script>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <!-- Content will be injected here -->
+        </div>
+    </div>
+</body>
+</html>

@@ -304,7 +304,7 @@ h1, h2, h3, h4, h5, h6, figure {
 		}
 	}
 }
-// #fh5co-header,
+#fh5co-header,
 // #fh5co-counter,
 // #fh5co-event,
 // .fh5co-bg {
@@ -313,6 +313,8 @@ h1, h2, h3, h4, h5, h6, figure {
 // 	background-repeat: no-repeat;
 // 	position: relative;
 // }
+
+
 #fh5co-counter,
 #fh5co-event,
 .fh5co-bg {
@@ -382,6 +384,40 @@ h1, h2, h3, h4, h5, h6, figure {
 		}
 	}
 }
+
+
+// video background
+// .fh5co-cover {
+//     position: relative;
+//     overflow: hidden;
+//     height: 100vh; /* Ensure the header takes up the full viewport height */
+// }
+// .fh5co-cover__video {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     width: 100%;
+//     height: 100%;
+//     object-fit: cover;
+//     transform: translate(-50%, -50%);
+//     z-index: -1;
+// }
+// .overlay {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+//     z-index: 0;
+// }
+// .container {
+//     position: relative;
+//     z-index: 1;
+// }
+
+
+// picture background
 .fh5co-cover {
 	height: 900px;
 	background-size: cover;
@@ -861,7 +897,7 @@ form {
 }
 
 
-#fh5co-header,
+// #fh5co-header,
 #fh5co-counter,
 .fh5co-cover {
 	.display-tc {
