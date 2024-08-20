@@ -12,7 +12,7 @@ Welcome to the my GitHub pages website setup documentation. This documentation i
 ## Custom Domain Name Setup
 
 
-<<<<<<< HEAD
+
 ## Git LFS
 brew install git-lfs
 git lfs install
@@ -25,9 +25,6 @@ git commit -m "Add large media files"
 git lfs migrate export --everything --include="*.mov,*.jpg"
 
 
-
-=======
->>>>>>> ded85e6cba3e6c79f76dbbedcfb8b9f1999acfa5
 ## Useful Links
 https://unicode.org/emoji/charts/full-emoji-list.html#1f37b
 
