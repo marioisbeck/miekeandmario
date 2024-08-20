@@ -12,6 +12,7 @@ Welcome to the my GitHub pages website setup documentation. This documentation i
 ## Custom Domain Name Setup
 
 
+
 ## Git LFS
 brew install git-lfs
 git lfs install
@@ -22,7 +23,6 @@ git commit -m "Track .mp4 and .jpg files with Git LFS"
 git add 0d0b4267be8885ac8aae5358dab94d6da880d184/images
 git commit -m "Add large media files"  
 git lfs migrate export --everything --include="*.mov,*.jpg"
-
 
 
 ## Useful Links
