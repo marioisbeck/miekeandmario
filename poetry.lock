@@ -133,6 +133,17 @@ files = [
 ]
 
 [[package]]
+name = "git-filter-repo"
+version = "2.45.0"
+description = "Quickly rewrite git repository history"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "git_filter_repo-2.45.0-py3-none-any.whl", hash = "sha256:63cd3208b92309e473e3d69e90195b445751d34be16880f6ffd5998c846bdefd"},
+    {file = "git_filter_repo-2.45.0.tar.gz", hash = "sha256:2fa80ff8da54382a6e189bc1522dc986ee7a52abcbe9e28192f73c0f6c8b5ea9"},
+]
+
+[[package]]
 name = "idna"
 version = "3.7"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -462,4 +473,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "f83683bbd8b3b07145a57f2ccc4659419cc0368bf45922cd80020005435c9faa"
+content-hash = "448225073834632a44d9969385544905a0cab2a77068d75f17de77a08a35f7ce"

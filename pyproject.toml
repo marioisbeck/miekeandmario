@@ -10,6 +10,7 @@ python = "^3.12"
 pillow = "^10.4.0"
 moviepy = "^1.0.3"
 pydub = "^0.25.1"
+git-filter-repo = "^2.45.0"
 
 
 [build-system]
