@@ -2,6 +2,19 @@ import os
 import re
 import argparse
 from PIL import Image
+import pyheif
+
+# Fix for the ffi.error related to struct heif_decoding_options
+import cffi
+
+ffi = cffi.FFI()
+ffi.cdef(
+    """
+    struct heif_decoding_options {
+        ...;
+    };
+"""
+)
 
 
 def get_image_files(directory):
@@ -9,7 +22,7 @@ def get_image_files(directory):
     image_files = []
     for root, _, files in os.walk(directory):
         for file in files:
-            if re.match(r".*\.(jpg|jpeg|png|gif|bmp|tiff)$", file, re.IGNORECASE):
+            if re.match(r".*\.(jpg|jpeg|png|gif|bmp|tiff|heic)$", file, re.IGNORECASE):
                 image_files.append(os.path.join(root, file))
     return sorted(
         image_files, key=lambda x: (tuple(map(int, re.findall(r"\d+", x))), x)
@@ -17,7 +30,14 @@ def get_image_files(directory):
 
 
 def convert_to_jpg(file_path):
-    img = Image.open(file_path)
+    ext = os.path.splitext(file_path)[1].lower()
+    if ext == ".heic":
+        heif_file = pyheif.read(file_path)
+        img = Image.frombytes(
+            heif_file.mode, heif_file.size, heif_file.data, "raw", heif_file.mode
+        )
+    else:
+        img = Image.open(file_path)
     rgb_img = img.convert("RGB")
     new_file_path = os.path.splitext(file_path)[0] + ".jpg"
     rgb_img.save(
