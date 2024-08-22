@@ -314,6 +314,7 @@
 				// IntersectionObserver to play videos when they come into view
 				const observer = new IntersectionObserver((entries) => {
 					entries.forEach(entry => {
+						console.log(`Video in view: ${entry.target.src} - Intersecting: ${entry.isIntersecting}`);
 						if (entry.isIntersecting) {
 							entry.target.play();
 						} else {
@@ -321,6 +322,7 @@
 						}
 					});
 				}, { threshold: 0.5 });
+				
 
 				document.querySelectorAll('.gallery video').forEach(video => {
 					observer.observe(video);
