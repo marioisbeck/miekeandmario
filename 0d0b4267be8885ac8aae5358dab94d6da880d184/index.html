@@ -8,6 +8,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Mieke and Mario</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<video src="images/videos/10.5.mp4" playsinline muted autoplay></video>
+	<video src="images/videos/17.5.mp4" playsinline muted autoplay></video>
+	<video src="images/videos/23.5.mp4" playsinline muted autoplay></video>
+	<video src="images/videos/34.5.mp4" playsinline muted autoplay></video>
+	<video src="images/videos/37.5.mp4" playsinline muted autoplay></video>
+	<video src="images/videos/55.5.mp4" playsinline muted autoplay></video>
+	<video src="images/videos/59.5.mp4" playsinline muted autoplay></video>
+	<video src="images/videos/63.5.mp4" playsinline muted autoplay></video>
+	<video src="images/videos/69.5.mp4" playsinline muted autoplay></video>
+	<video src="images/videos/80.5.mp4" playsinline muted autoplay></video>
+	<video src="images/videos/haag.mp4" playsinline muted autoplay></video>
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive, wedding, miekeandmario" />
 	<meta name="author" content="FREEHTML5.CO" />
@@ -195,7 +206,7 @@
 				];
 
 				const galleryDiv = document.querySelector('.gallery');
-				const specialVideo = { type: 'video', src: 'images/videos/haag.mp4' };
+				const specialVideo = { type: 'video', src: 'images/videos/haag.mp4'};
 
 				const specialContainer = document.createElement('div');
 				specialContainer.style.position = 'relative';
@@ -285,7 +296,7 @@
 					const modal = document.getElementById('myModal');
 					const modalContent = document.querySelector('.modal-content');
 					modal.style.display = "block";
-					modalContent.innerHTML = type === 'image' ? `<img src="${src}" alt="Enlarged Photo">` : `<video src="${src}" controls autoplay></video>`;
+					modalContent.innerHTML = type === 'image' ? `<img src="${src}" alt="Enlarged Photo">` : `<video src="${src}" controls playsinline autoplay></video>`;
 				}
 
 				function closeModal() {
