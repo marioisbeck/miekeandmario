@@ -10,7 +10,6 @@
         <!-- Special Video -->
         <div style="position: relative; text-align: center; margin-bottom: 20px;">
             <video id="specialVideo" src="images/videos/haag.mp4" muted playsinline style="width: 60%; max-width: 800px; border-radius: 15px;"></video>
-            <div id="playButton" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3em; color: white; cursor: pointer;">▶️</div>
         </div>
 
         <!-- Commenting out the gallery videos and main video -->
@@ -24,7 +23,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const specialVideoElement = document.getElementById('specialVideo');
-            const playButton = document.getElementById('playButton');
 
             // Option 1: Using playsinline and muted attributes
             specialVideoElement.play();
@@ -45,12 +43,6 @@
             // Option 3: Using user interaction to trigger autoplay
             document.addEventListener('click', () => {
                 specialVideoElement.play();
-            });
-
-            // Option 4: Using a play button overlay
-            playButton.addEventListener('click', () => {
-                specialVideoElement.play();
-                playButton.style.display = 'none';
             });
         });
     </script>
