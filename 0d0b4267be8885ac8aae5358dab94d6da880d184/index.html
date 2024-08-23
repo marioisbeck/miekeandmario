@@ -281,313 +281,80 @@
 					const modal = document.getElementById('myModal');
 					const modalContent = document.querySelector('.modal-content');
 					modal.style.display = "block";
-					modalContent.innerHTML = type === 'image' ? `<img src="${src}" alt="Enlarged Photo">` : `<video src="${src}" controls playsinline muted autoplay></video>`;
+					modalContent.innerHTML = type === 'image' ? `<img src="${src}" alt="Enlarged Photo">` : `<video src="${src}" controls autoplay></video>`;
 				}
 			
-				function closeModal() {
-					const modal = document.getElementById('myModal');
-					modal.style.display = "none";
-					const video = modal.querySelector('video');
-					if (video) {
-						video.controls = false;
-						video.muted = true; // Mute the video to allow autoplay in Chrome
-						video.alt = `Video`;
-						video.autoplay = true; // Autoplay the video
-						video.playsinline = true; // for mobile devices
-					}
-				}
+				const modal = document.createElement('div');
+				modal.id = 'myModal';
+				modal.className = 'modal';
+				modal.style.display = 'none';
+				modal.style.position = 'fixed';
+				modal.style.zIndex = '1';
+				modal.style.left = '0';
+				modal.style.top = '0';
+				modal.style.width = '100%';
+				modal.style.height = '100%';
+				modal.style.overflow = 'auto';
+				modal.style.backgroundColor = 'rgb(0,0,0)';
+				modal.style.backgroundColor = 'rgba(0,0,0,0.9)';
 			
-				// Close the modal when clicking outside the image
-				document.addEventListener('click', function(event) {
-					const modal = document.getElementById('myModal');
-					if (event.target === modal || event.target.classList.contains('close')) {
-						closeModal();
-					}
-				});
+				const modalContent = document.createElement('div');
+				modalContent.className = 'modal-content';
+				modalContent.style.margin = 'auto';
+				modalContent.style.display = 'block';
+				modalContent.style.width = '80%';
+				modalContent.style.maxWidth = '700px';
 			
-				// Close the modal when pressing the Esc key
-				document.addEventListener('keydown', function(event) {
-					if (event.key === 'Escape') {
-						closeModal();
-					}
-				});
+				const span = document.createElement('span');
+				span.className = 'close';
+				span.innerHTML = '&times;';
+				span.style.position = 'absolute';
+				span.style.top = '15px';
+				span.style.right = '35px';
+				span.style.color = '#f1f1f1';
+				span.style.fontSize = '40px';
+				span.style.fontWeight = 'bold';
+				span.style.transition = '0.3s';
+				span.onclick = function() {
+					modal.style.display = 'none';
+				};
 			
-				// IntersectionObserver to play videos when they come into view
+				modal.appendChild(span);
+				modal.appendChild(modalContent);
+				document.body.appendChild(modal);
+			
+				// Special Video Autoplay Logic
+				const specialVideoElement = document.getElementById('specialVideo');
+			
+				// Option 1: Using playsinline and muted attributes
+				specialVideoElement.play();
+			
+				// Option 2: Using IntersectionObserver to autoplay when in view
 				const observer = new IntersectionObserver((entries) => {
 					entries.forEach(entry => {
 						if (entry.isIntersecting) {
-							entry.target.play();
+							specialVideoElement.play();
 						} else {
-							entry.target.pause();
+							specialVideoElement.pause();
 						}
 					});
 				}, { threshold: 0.5 });
 			
-				document.querySelectorAll('.gallery video').forEach(video => {
-					observer.observe(video);
-					video.addEventListener('canplay', () => {
-						video.play(); // Start playing the video as soon as it can play
-					});
-					video.setAttribute('playsinline', 'true'); // Ensure videos play inline on mobile devices
-				});
+				observer.observe(specialVideoElement);
 			
-				// Trigger play on user interaction
-				document.addEventListener('scroll', () => {
-					document.querySelectorAll('.gallery video').forEach(video => {
-						if (video.paused && video.muted) {
-							video.play();
-						}
-					});
-					video.setAttribute('playsinline', 'true'); // Ensure videos play inline on mobile devices
+				// Option 3: Using user interaction to trigger autoplay
+				document.addEventListener('click', () => {
+					specialVideoElement.play();
 				});
 			});
-			</script> 
-		
-
-			
-			<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 1fr;
-            gap: 10px;
-            padding: 20px;
-        }
-        .gallery img, .gallery video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        .gallery img:hover, .gallery video:hover {
-            transform: scale(1.05);
-        }
-        .gallery video {
-            display: block;
-            position: relative;
-        }
-        .gallery video::-webkit-media-controls {
-            display: none !important;
-        }
-        .gallery video:hover::-webkit-media-controls {
-            display: block !important;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        .modal-content {
-            margin: 2% auto;
-            display: block;
-            width: auto;
-            height: 85%;
-            max-width: 1200px;
-        }
-        .modal-content img, .modal-content video {
-            width: 100%;
-            height: auto;
-        }
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
-	
+			</script>
 	</head>
 	<body>
-
-	<div class="fh5co-loader"></div>
-	
-	<div id="page">
-	<nav class="fh5co-nav" role="navigation">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12 text-center menu-1">
-					<ul>
-						<li class="active"><a href="index.html">
-							<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23002781' d='M46,6H2C0.896,6,0,6.896,0,8v32c0,1.104,0.896,2,2,2h44c1.104,0,2-0.896,2-2V8C48,6.896,47.104,6,46,6z'/%3E%3Cpath fill='%23E6E6E6' d='M48,8c0-1.104-0.896-2-2-2h-5.161L28,15.876V6h-8v9.876L7.161,6H2C0.896,6,0,6.896,0,8v2.586L12.239,20H0v8 h12.239L0,37.415V40c0,1.104,0.896,2,2,2h5.161L20,32.124V42h8v-9.876L40.839,42H46c1.104,0,2-0.896,2-2v-2.585L35.761,28H48v-8 H35.761L48,10.586V8z'/%3E%3Cpolygon fill='%23D10D24' points='48,22 26,22 26,6 22,6 22,22 0,22 0,26 22,26 22,42 26,42 26,26 48,26 '/%3E%3Cpath fill='%23D10D24' d='M47.001,6.307L29.2,20h3.28L48,8.062V8C48,7.268,47.587,6.656,47.001,6.307z'/%3E%3Cpath fill='%23D10D24' d='M32.48,28H29.2l17.801,13.693C47.587,41.344,48,40.732,48,40v-0.062L32.48,28z'/%3E%3Cpath fill='%23D10D24' d='M15.52,28L0,39.938V40c0,0.732,0.413,1.344,0.999,1.693L18.8,28H15.52z'/%3E%3Cpath fill='%23D10D24' d='M15.52,20h3.28L0.999,6.307C0.413,6.656,0,7.268,0,8v0.062L15.52,20z'/%3E%3C/svg%3E" height="15px">
-							EN</a></li>
-						<li class="active"><a href="index_de.html">
-							<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M48,18H0V8c0-1.105,0.895-2,2-2h44c1.105,0,2,0.895,2,2V18z'/%3E%3Crect y='18' fill='%23EE0000' width='48' height='12'/%3E%3Cpath fill='%23FDCF00' d='M48,40c0,1.105-0.895,2-2,2H2c-1.105,0-2-0.895-2-2V30h48V40z'/%3E%3C/svg%3E" height="15px">
-							DE</a></li>
-						<li class="active"><a href="index_nl.html">
-							<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgOSA2Ij4NCjxyZWN0IGZpbGw9IiMyMTQ2OEIiCXdpZHRoPSI5IiBoZWlnaHQ9IjYiLz4NCjxyZWN0IGZpbGw9IiNGRkYiIHdpZHRoPSI5IiBoZWlnaHQ9IjQiLz4NCjxyZWN0IGZpbGw9IiNBRTFDMjgiCXdpZHRoPSI5IiBoZWlnaHQ9IjIiLz4NCjwvc3ZnPg==" height="11px">
-							NL</a></li>
-						<li class="active"><a href="https://github.com/marioisbeck/miekemario" target="_blank">
-							<img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNi42MjYgMC0xMiA1LjM3My0xMiAxMiAwIDUuMzAyIDMuNDM4IDkuOCA4LjIwNyAxMS4zODcuNTk5LjExMS43OTMtLjI2MS43OTMtLjU3N3YtMi4yMzRjLTMuMzM4LjcyNi00LjAzMy0xLjQxNi00LjAzMy0xLjQxNi0uNTQ2LTEuMzg3LTEuMzMzLTEuNzU2LTEuMzMzLTEuNzU2LTEuMDg5LS43NDUuMDgzLS43MjkuMDgzLS43MjkgMS4yMDUuMDg0IDEuODM5IDEuMjM3IDEuODM5IDEuMjM3IDEuMDcgMS44MzQgMi44MDcgMS4zMDQgMy40OTIuOTk3LjEwNy0uNzc1LjQxOC0xLjMwNS43NjItMS42MDQtMi42NjUtLjMwNS01LjQ2Ny0xLjMzNC01LjQ2Ny01LjkzMSAwLTEuMzExLjQ2OS0yLjM4MSAxLjIzNi0zLjIyMS0uMTI0LS4zMDMtLjUzNS0xLjUyNC4xMTctMy4xNzYgMCAwIDEuMDA4LS4zMjIgMy4zMDEgMS4yMy45NTctLjI2NiAxLjk4My0uMzk5IDMuMDAzLS40MDQgMS4wMi4wMDUgMi4wNDcuMTM4IDMuMDA2LjQwNCAyLjI5MS0xLjU1MiAzLjI5Ny0xLjIzIDMuMjk3LTEuMjMuNjUzIDEuNjUzLjI0MiAyLjg3NC4xMTggMy4xNzYuNzcuODQgMS4yMzUgMS45MTEgMS4yMzUgMy4yMjEgMCA0LjYwOS0yLjgwNyA1LjYyNC01LjQ3OSA1LjkyMS40My4zNzIuODIzIDEuMTAyLjgyMyAyLjIyMnYzLjI5M2MwIC4zMTkuMTkyLjY5NC44MDEuNTc2IDQuNzY1LTEuNTg5IDguMTk5LTYuMDg2IDguMTk5LTExLjM4NiAwLTYuNjI3LTUuMzczLTEyLTEyLTEyeiIvPjwvc3ZnPg==" height="15px">
-							GitHub</a></li>
-					</ul>
-				</div>
-			</div>
-			
-		</div>
-	</nav>
-
-	<header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url(images/wedding_pics/101.jpg);" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center">
-					<div class="display-t">
-						<div class="display-tc animate-box" data-animate-effect="fadeIn">
-							<h1>Mieke &amp; Mario's<br>Wedding</h1>
-							<h2>19<sup>th</sup> August 2023</h2>
-							<!-- <div class="simply-countdown simply-countdown-one"></div>
-							<p><a href="LoveDay Mieke & Mario.ics" class="btn btn-default btn-sm">Save the date</a></p> -->
-							<p><a href="https://drive.google.com/drive/folders/16yeiqWiNmhgIT6XgpAmVHq78rt3nE9BM?usp=sharing" target="_blank" class="btn btn-default btn-sm">Pictures and Videos</a></p>
-						</div>
-					</div>
-				</div>
+		<div class="gallery">
+			<!-- Special Video -->
+			<div style="position: relative; text-align: center; margin-bottom: 20px;">
+				<video id="specialVideo" src="images/videos/haag.mp4" muted playsinline style="width: 60%; max-width: 800px; border-radius: 15px;"></video>
 			</div>
 		</div>
-	</header>
-
-	<div id="fh5co-couple">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-					<h2><a id="love_day">Thank You</a></h2>
-					<p>... for making memories with us which feels to us as if we got married yesterday!</p>
-				</div>
-			</div>
-			<div class="couple-wrap animate-box">
-				<div class="couple-half">
-					<div class="bride">
-						<img src="images/bride.jpg" alt="bride" class="img-responsive">
-					</div>
-					<div class="desc-bride">
-						<p>We had an amazing time celebrating our wedding day with everyone. It was a day filled with love, laughter, and unforgettable memories. It might have taken us a while to share the photos with everyone (about a year), but hey, good things come to those who are patient!</p>
-					</div>
-				</div>
-				<p class="heart text-center"><i class="icon-heart2"></i></p>
-				<div class="couple-half">
-					<div class="groom">
-						<img src="images/groom.png" alt="groom" class="img-responsive">
-					</div>
-					<div class="desc-groom">
-						<p>The past year has been a rollercoaster for us. The birth of our daughter Felien, the passing of Mieke's father... The extremes of life in too close proximity. We are lucky to have friends and family to celebrate our happy moments and to be there for us during the difficult times.</p>
-					</div>
-				</div>
-				<!-- Add the button here -->
-				<!-- <div class="text-center">
-					<p><a href="https://drive.google.com/drive/folders/16yeiqWiNmhgIT6XgpAmVHq78rt3nE9BM?usp=sharing" target="_blank" class="btn btn-default btn-sm">Pictures and Videos</a></p>
-				</div> -->
-			</div>
-		</div>
-	</div>
-
-
-    <!-- Add this section where you want the gallery to appear -->
-    <!-- <h1 style="text-align: center;">Photo and Video Gallery</h1> -->
-    <div class="gallery">
-        <!-- Gallery items will be injected here by JavaScript -->
-    </div>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div class="modal-content">
-            <!-- Content will be injected here -->
-        </div>
-    </div>
-
-	<footer id="fh5co-footer" role="contentinfo">
-		<div class="container">
-
-			<div class="row copyright">
-				<div class="col-md-12 text-center">
-					<p>
-						<small class="block">&copy; Website design adjusted by <a>Mario</a> from 2016 Free HTML5.</small> 
-						<small class="block">All Rights Reserved <a href="https://freehtml5.co/" target="_blank">FREEHTML5.co</a></small>
-					</p>
-					<!-- <p>
-						<ul class="fh5co-social-icons">
-							<li><a href="#"><i class="icon-twitter"></i></a></li>
-							<li><a href="#"><i class="icon-facebook"></i></a></li>
-							<li><a href="#"><i class="icon-linkedin"></i></a></li>
-							<li><a href="#"><i class="icon-dribbble"></i></a></li>
-						</ul>
-					</p> -->
-				</div>
-			</div>
-
-		</div>
-	</footer>
-	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-	
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- countTo -->
-	<script src="js/jquery.countTo.js"></script>
-
-	<!-- Stellar -->
-	<script src="js/jquery.stellar.min.js"></script>
-	<!-- Magnific Popup -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/magnific-popup-options.js"></script>
-
-	<!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script> -->
-	<script src="js/simplyCountdown.js"></script>
-	<!-- Main -->
-	<script src="js/main.js"></script>
-
-	<script>
-    var d = new Date(new Date().getTime() + 200 * 120 * 120 * 2000);
-
-    // default example
-    simplyCountdown('.simply-countdown-one', {
-        year: 2023,
-        month: 7,
-        day: 19
-    });
-
-    //jQuery example
-    $('#simply-countdown-losange').simplyCountdown({
-        year: d.getFullYear(),
-        month: d.getMonth(),
-        day: d.getDate(),
-        enableUtc: false
-    });
-</script>
-
 	</body>
 </html>
-
