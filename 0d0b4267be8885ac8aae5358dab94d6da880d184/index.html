@@ -193,7 +193,7 @@
 					{ type: 'image', src: 'images/wedding_pics/98.jpg' },
 					// END RENUMBERING IMAGES - DO NOT REMOVE THIS COMMENT
 				];
-			
+
 				const galleryDiv = document.querySelector('.gallery');
 				const specialVideo = { type: 'video', src: 'images/videos/haag.mp4' };
 			
@@ -206,11 +206,36 @@
 				specialVideoElement.src = specialVideo.src;
 				specialVideoElement.controls = false;
 				specialVideoElement.muted = true; // Mute the video to allow autoplay in Chrome
-				specialVideoElement.autoplay = true; // Autoplay the video
 				specialVideoElement.playsinline = true; // for mobile devices
 				specialVideoElement.style.width = '60%'; // Make the video slightly larger
 				specialVideoElement.style.maxWidth = '800px'; // Limit the maximum width
 				specialVideoElement.style.borderRadius = '15px'; // Add rounded edges
+			
+				// Detect if the user is on a mobile device
+				const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+			
+				if (!isMobile) {
+					specialVideoElement.autoplay = true; // Autoplay the video only if not on mobile
+				} else {
+					// Add play button overlay for mobile
+					const playButton = document.createElement('div');
+					playButton.innerHTML = '▶️';
+					playButton.style.position = 'absolute';
+					playButton.style.top = '50%';
+					playButton.style.left = '50%';
+					playButton.style.transform = 'translate(-50%, -50%)';
+					playButton.style.fontSize = '3em';
+					playButton.style.color = 'white';
+					playButton.style.cursor = 'pointer';
+					playButton.style.pointerEvents = 'none'; // Allow clicks to pass through to the video element
+			
+					specialContainer.appendChild(playButton);
+			
+					specialVideoElement.onclick = function() {
+						specialVideoElement.play();
+						playButton.style.display = 'none'; // Hide play button when video starts playing
+					};
+				}
 			
 				specialVideoElement.onclick = function() {
 					openModal('video', specialVideoElement.src);
@@ -252,8 +277,30 @@
 						video.controls = false;
 						video.muted = true; // Mute the video to allow autoplay in Chrome
 						video.alt = `Video`;
-						video.autoplay = true; // Autoplay the video
 						video.playsinline = true; // for mobile devices
+			
+						if (!isMobile) {
+							video.autoplay = true; // Autoplay the video only if not on mobile
+						} else {
+							// Add play button overlay for mobile
+							const playButton = document.createElement('div');
+							playButton.innerHTML = '▶️';
+							playButton.style.position = 'absolute';
+							playButton.style.top = '50%';
+							playButton.style.left = '50%';
+							playButton.style.transform = 'translate(-50%, -50%)';
+							playButton.style.fontSize = '3em';
+							playButton.style.color = 'white';
+							playButton.style.cursor = 'pointer';
+							playButton.style.pointerEvents = 'none'; // Allow clicks to pass through to the video element
+			
+							container.appendChild(playButton);
+			
+							video.onclick = function() {
+								video.play();
+								playButton.style.display = 'none'; // Hide play button when video starts playing
+							};
+						}
 			
 						video.onclick = function() {
 							openModal(file.type, video.src);
@@ -339,7 +386,7 @@
 					});
 				});
 			});
-			</script> 
+			</script>
 		
 
 			
