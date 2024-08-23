@@ -69,7 +69,7 @@
 			<script>
 
 				document.addEventListener("DOMContentLoaded", function() {
-					let currentImageIndex =29; // 26
+					let currentImageIndex =26; // 26
 					const totalImages = 98;
 					const headerElement = document.getElementById("fh5co-header");
 					const intervalTime = 3000; // in milliseconds
@@ -193,15 +193,16 @@
 					{ type: 'image', src: 'images/wedding_pics/98.jpg' },
 					// END RENUMBERING IMAGES - DO NOT REMOVE THIS COMMENT
 				];
-
+				];
+			
 				const galleryDiv = document.querySelector('.gallery');
 				const specialVideo = { type: 'video', src: 'images/videos/haag.mp4' };
-
+			
 				const specialContainer = document.createElement('div');
 				specialContainer.style.position = 'relative';
 				specialContainer.style.textAlign = 'center';
 				specialContainer.style.marginBottom = '20px';
-
+			
 				const specialVideoElement = document.createElement('video');
 				specialVideoElement.src = specialVideo.src;
 				specialVideoElement.controls = false;
@@ -211,7 +212,7 @@
 				specialVideoElement.style.width = '60%'; // Make the video slightly larger
 				specialVideoElement.style.maxWidth = '800px'; // Limit the maximum width
 				specialVideoElement.style.borderRadius = '15px'; // Add rounded edges
-
+			
 				specialVideoElement.onclick = function() {
 					openModal('video', specialVideoElement.src);
 				};
@@ -228,26 +229,16 @@
 				specialVideoElement.onended = function() {
 					specialVideoElement.play(); // Restart the video when it ends
 				};
-
+			
 				specialContainer.appendChild(specialVideoElement);
 				galleryDiv.parentNode.insertBefore(specialContainer, galleryDiv);
-
+			
 				mediaFiles.forEach(file => {
 					if (file.src === 'images/videos/haag.mp4') return; // Skip the special video as it's already added
-
+			
 					const container = document.createElement('div');
 					container.style.position = 'relative';
-
-					const fileName = document.createElement('div');
-					fileName.style.position = 'absolute';
-					fileName.style.top = '10px';
-					fileName.style.left = '10px';
-					fileName.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-					fileName.style.color = 'white';
-					fileName.style.padding = '5px';
-					fileName.style.borderRadius = '5px';
-					fileName.textContent = file.src.split('/').pop();
-
+			
 					if (file.type === 'image') {
 						const img = document.createElement('img');
 						img.src = file.src;
@@ -264,7 +255,7 @@
 						video.alt = `Video`;
 						video.autoplay = true; // Autoplay the video
 						video.playsinline = true; // for mobile devices
-
+			
 						video.onclick = function() {
 							openModal(file.type, video.src);
 						};
@@ -283,18 +274,17 @@
 						};
 						container.appendChild(video);
 					}
-
-					// container.appendChild(fileName); // uncomment/ comment this line to enable seeing the file numbers overlay.
+			
 					galleryDiv.appendChild(container);
 				});
-
+			
 				function openModal(type, src) {
 					const modal = document.getElementById('myModal');
 					const modalContent = document.querySelector('.modal-content');
 					modal.style.display = "block";
 					modalContent.innerHTML = type === 'image' ? `<img src="${src}" alt="Enlarged Photo">` : `<video src="${src}" controls playsinline muted autoplay></video>`;
 				}
-
+			
 				function closeModal() {
 					const modal = document.getElementById('myModal');
 					modal.style.display = "none";
@@ -307,7 +297,7 @@
 						video.playsinline = true; // for mobile devices
 					}
 				}
-
+			
 				// Close the modal when clicking outside the image
 				document.addEventListener('click', function(event) {
 					const modal = document.getElementById('myModal');
@@ -315,18 +305,17 @@
 						closeModal();
 					}
 				});
-
+			
 				// Close the modal when pressing the Esc key
 				document.addEventListener('keydown', function(event) {
 					if (event.key === 'Escape') {
 						closeModal();
 					}
 				});
-
+			
 				// IntersectionObserver to play videos when they come into view
 				const observer = new IntersectionObserver((entries) => {
 					entries.forEach(entry => {
-						console.log(`Video in view: ${entry.target.src} - Intersecting: ${entry.isIntersecting}`);
 						if (entry.isIntersecting) {
 							entry.target.play();
 						} else {
@@ -334,16 +323,24 @@
 						}
 					});
 				}, { threshold: 0.5 });
-				
-
+			
 				document.querySelectorAll('.gallery video').forEach(video => {
 					observer.observe(video);
 					video.addEventListener('canplay', () => {
 						video.play(); // Start playing the video as soon as it can play
 					});
 				});
+			
+				// Trigger play on user interaction
+				document.addEventListener('scroll', () => {
+					document.querySelectorAll('.gallery video').forEach(video => {
+						if (video.paused && video.muted) {
+							video.play();
+						}
+					});
+				});
 			});
-			</script>    
+			</script> 
 		
 
 			
