@@ -260,6 +260,9 @@
 						video.controls = false;
 						video.muted = true; // Mute the video to allow autoplay in Chrome
 						video.alt = `Video`;
+						video.autoplay = true; // Autoplay the video
+						video.playsinline = true; // for mobile devices
+
 						video.onclick = function() {
 							openModal(file.type, video.src);
 						};
@@ -293,7 +296,11 @@
 					modal.style.display = "none";
 					const video = modal.querySelector('video');
 					if (video) {
-						video.muted = true;
+						video.controls = false;
+						video.muted = true; // Mute the video to allow autoplay in Chrome
+						video.alt = `Video`;
+						video.autoplay = true; // Autoplay the video
+						video.playsinline = true; // for mobile devices
 					}
 				}
 
