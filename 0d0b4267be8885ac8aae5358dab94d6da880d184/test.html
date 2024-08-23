@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Autoplay Test</title>
+</head>
+<body>
+    <div class="gallery">
+        <!-- Special Video -->
+        <div style="position: relative; text-align: center; margin-bottom: 20px;">
+            <video id="specialVideo" src="images/videos/haag.mp4" muted playsinline style="width: 60%; max-width: 800px; border-radius: 15px;"></video>
+            <div id="playButton" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3em; color: white; cursor: pointer;">▶️</div>
+        </div>
+
+        <!-- Commenting out the gallery videos and main video -->
+        <!--
+        <div style="position: relative;">
+            <video src="path/to/another/video.mp4" muted playsinline></video>
+        </div>
+        -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const specialVideoElement = document.getElementById('specialVideo');
+            const playButton = document.getElementById('playButton');
+
+            // Option 1: Using playsinline and muted attributes
+            specialVideoElement.play();
+
+            // Option 2: Using IntersectionObserver to autoplay when in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        specialVideoElement.play();
+                    } else {
+                        specialVideoElement.pause();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(specialVideoElement);
+
+            // Option 3: Using user interaction to trigger autoplay
+            document.addEventListener('click', () => {
+                specialVideoElement.play();
+            });
+
+            // Option 4: Using a play button overlay
+            playButton.addEventListener('click', () => {
+                specialVideoElement.play();
+                playButton.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
