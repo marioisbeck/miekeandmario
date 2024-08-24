@@ -327,7 +327,27 @@
 					}
 				});
 			}, { threshold: 0.5 });
-		
+
+
+			// added
+			// IntersectionObserver for special video
+			const specialObserver = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.play();
+					} else {
+						entry.target.pause();
+					}
+				});
+			}, { threshold: 0.5 });
+
+			specialObserver.observe(specialVideoElement);
+			specialVideoElement.addEventListener('canplay', () => {
+				specialVideoElement.play();
+			});
+			specialVideoElement.setAttribute('playsinline', 'true');
+			// added end
+
 			document.querySelectorAll('.gallery video').forEach(video => {
 				observer.observe(video);
 				video.addEventListener('canplay', () => {
@@ -345,6 +365,7 @@
 				});
 				video.setAttribute('playsinline', 'true'); // Ensure videos play inline on mobile devices
 			});
+			
 		});
 		</script>
 
